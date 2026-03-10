@@ -15,10 +15,25 @@ public class TemperatureDevice {
 		// TODO - start
 
 		// create a client object and use it to
+		Client client = new Client("sensor", "sensor", "localhost");
 
 		// - connect to the broker - user "sensor" as the user name
+		client.connect();
 		// - publish the temperature(s)
+		client.createTopic("temperature");
+		for(int i = 0; i < COUNT; i++) {
+			String temp = String.valueOf(sn.read());
+			client.publish("temperature", temp);
+
+			try {
+				Thread.sleep(1000);
+			}
+			catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		// - disconnect from the broker
+		client.disconnect();
 
 		// TODO - end
 

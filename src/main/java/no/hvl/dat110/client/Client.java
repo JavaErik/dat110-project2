@@ -10,7 +10,7 @@ public class Client extends Thread {
 	private Connection connection;
 	private String user;
 
-	public Client(String user, String server, int port) {
+	public Client(String user, String server, String port) {
 		client = new MessagingClient(server, port);
 		this.user = user;
 	}
